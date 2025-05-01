@@ -1,30 +1,36 @@
-const sections = document.querySelectorAll("section");
-const body = document.body;
+// Auto day/night theme
+window.addEventListener('DOMContentLoaded', () => {
+  const hour = new Date().getHours();
+  const isDay = hour >= 6 && hour < 18;
+  document.body.classList.add(isDay ? 'day-theme' : 'night-theme');
+  document.getElementById("themeToggle").textContent = isDay ? '🌙' : '☀️';
+});
 
-window.addEventListener("scroll", () => {
-  let scrollY = window.scrollY;
+// Manual toggle theme
+document.getElementById("themeToggle").addEventListener("click", () => {
+  document.body.classList.toggle("day-theme");
+  document.body.classList.toggle("night-theme");
+  const isDay = document.body.classList.contains("day-theme");
+  document.getElementById("themeToggle").textContent = isDay ? '🌙' : '☀️';
+});
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
+//Scroll navbar+active links
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  const navItems = document.querySelectorAll('.nav-item');
 
-    if (scrollY >= sectionTop - sectionHeight / 2) {
-      const id = section.getAttribute("id");
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
 
-      switch (id) {
-        case "home":
-          body.style.backgroundColor = "#1a237e"; // Indigo
-          break;
-        case "about":
-          body.style.backgroundColor = "#00695c"; // Teal
-          break;
-        case "services":
-          body.style.backgroundColor = "#4e342e"; // Brown
-          break;
-        case "contact":
-          body.style.backgroundColor = "#37474f"; // Blue Grey
-          break;
-      }
+  navItems.forEach(link => {
+    const section = document.querySelector(link.getAttribute('href'));
+    const top = section.offsetTop - 120;
+    const bottom = top + section.offsetHeight;
+    const scroll = window.scrollY;
+
+    if (scroll >= top && scroll <= bottom) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
     }
   });
 });

@@ -1,63 +1,162 @@
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: sans-serif;
-  transition: background-color 0.5s ease;
-  scroll-behavior: smooth;
-  background-color: #1a237e; /* Initial background */
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .navbar {
   position: fixed;
-  top: 0;
   width: 100%;
-  padding: 1rem 2rem;
-  background-color: rgba(1, 10, 2, 0.85);
-  color: white;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 999;
-  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: #111;
 }
 
 .logo {
-  font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
 }
 
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 30px;
+  list-style: none;
 }
 
-.nav-links li a {
-  color: white;
+.nav-links a {
+  color: #fff;
   text-decoration: none;
-  transition: color 0.3s ease;
-  text-shadow: 2px 2px 4px yellow;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
 }
 
-.nav-links li a:hover {
-  background-color: aqua;
-  border: 5px solid;
-  border-radius: 5px;
-  
+.nav-links a:hover,
+.nav-links a.active {
+  color: #00adb5;
+}
+
+.theme-toggle {
+  cursor: pointer;
+  background: none;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 14px;
+  margin-left: 20px;
 }
 
 section {
-  height: 100vh;
-  padding-top: 100px;
+  min-height: 100vh;
+  padding: 100px 20px 80px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  color: inherit;
+  text-align: center;
+}
+
+#home {
+  background-image: url('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size: cover;
+  background-position: center;
   color: white;
-  font-size: 2rem;
+}
+
+#about {
+  background-image: url('https://images.pexels.com/photos/7919/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+#services {
+  background-image: url('https://images.pexels.com/photos/355770/pexels-photo-355770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+#contact {
+  background-image: url('https://images.pexels.com/photos/957002/berchtesgaden-alpine-watzmann-berchtesgaden-national-park-957002.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: 12px;
+}
+
+/* Themes */
+.day-theme {
+  background-color: #f5f7fa;
+  color: #222;
+}
+
+.night-theme {
+  background-color: #121212;
+  color: #eee;
+}
+
+.night-theme .navbar {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.night-theme .nav-links a {
+  color: #eee;
+}
+
+.night-theme .nav-links a:hover,
+.night-theme .nav-links a.active {
+  color: #00adb5;
+}
+
+.night-theme .theme-toggle {
+  color: #eee;
+  border-color: #eee;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    padding: 20px;
+    display: none;
+  }
 }
